@@ -6,9 +6,20 @@ window.onload = function() {
             // DE MASQUER LE LOGIN FORM POUR AFFICHER LE REGISTER FORM, ET INVERSEMENT <->
 
 
+var button = document.getElementsByClassName("square-button-empty"); 
+var connexionForm = document.querySelector("#connexion-form");
+var registerForm = document.querySelector("#register-form");
 
+for (var i = 0; i<button.length; i++) {
+    button[i].addEventListener ("click", function(e){
+        if(e.target.getAttribute("data-form")==0) {
 
+            connexionForm.style.display = "none"
+            registerForm.style.display = "flex"}
 
+        else {connexionForm.style.display = "flex"
+            registerForm.style.display= ""}})}
+      
 
 
 
