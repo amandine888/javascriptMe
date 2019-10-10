@@ -7,8 +7,8 @@ window.onload = function() {
 
 
 var button = document.getElementsByClassName("square-button-empty"); 
-var connexionForm = document.querySelector("#connexion-form");
-var registerForm = document.querySelector("#register-form");
+var connexionForm = document.getElementById("connexion-form");
+var registerForm = document.getElementById("register-form");
 
 for (var i = 0; i<button.length; i++) {
     button[i].addEventListener ("click", function(e){
@@ -32,7 +32,50 @@ for (var i = 0; i<button.length; i++) {
 
 
 
+var buttonConnexion = document.getElementById("buttonConnexion"); 
+var buttonRegister = document.getElementById("buttonRegister"); 
 
+
+buttonConnexion.addEventListener("click", function(e){
+    for (let i=0; i<2; i++){ // i<2 ou i.lenght
+        var x = connexionForm[i].value;
+        console.log(x);
+    } 
+})
+
+buttonRegister.addEventListener("click", function(e){
+    var username = registerForm[0].value; 
+    console.log(username);
+
+    if (username.length<5){
+        alert("Username incorrect !"); 
+        return false;
+    }
+
+    var email = registerForm[1].value; 
+    console.log(email);
+
+    var password = registerForm[2].value; 
+    if (password.length<8){
+        alert("Password incorrect !"); 
+        return false; 
+    }
+    console.log(password);
+
+    var rulesPwd = /^(?=.[a-z])(?=.[A-Z])(?=.*[0-9])/; 
+    if (rulesPwd.test(password) == false){
+        alert("Your password have to contain at least 8 letters, 1 uppercase and 1 lower case and 1 number")
+        return false; 
+    }
+
+    var verifPassword = registerForm[3].value; 
+    if  (verifPassword != password) {
+        alert("The verification is incorrect")
+        return false; 
+
+    }
+
+})
 
 
     // --------------------- STEP 3 -------------------------
@@ -65,6 +108,5 @@ for (var i = 0; i<button.length; i++) {
                     // 1.2.1 si l'email ou le mot de passe ne correspondent pas, retourner un message d'erreur (les alert() sont proscrit)
 
             // 2. Si les données saisies correspondent a celles présentes dans le 'localStorage', rediriger l'utilisateur sur la page 'home.html'
-
 
 }
