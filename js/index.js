@@ -1,16 +1,31 @@
 window.onload = function() {
 
+
+class User {
+
+    constructor (username, email, password){
+        this.username = username; 
+        this.email = email; 
+        this. password = password; 
+    }
+    
+        getUsernamne (){ return this.username }
+        getEmail (){ return this.email}
+        getPassword () {return this.password}
+        
+    }    
+
     // --------------------- STEP 1 ---------------------
         // Par defaut le formulaire de connection est afficher, le formulaire d'inscription quand a lui est en 'display: none';
         // FAITE EN SORTE QUE AU CLICK SUR LES BUTTONS POSSEDANT LA CLASS 'square-button-empty'
             // DE MASQUER LE LOGIN FORM POUR AFFICHER LE REGISTER FORM, ET INVERSEMENT <->
 
 
-var button = document.getElementsByClassName("square-button-empty"); 
-var connexionForm = document.getElementById("connexion-form");
-var registerForm = document.getElementById("register-form");
+const button = document.getElementsByClassName("square-button-empty"); 
+const connexionForm = document.getElementById("connexion-form");
+const registerForm = document.getElementById("register-form");
 
-for (var i = 0; i<button.length; i++) {
+for (let i = 0; i<button.length; i++) {
     button[i].addEventListener ("click", function(e){
         if(e.target.getAttribute("data-form")==0) {
 
@@ -32,50 +47,55 @@ for (var i = 0; i<button.length; i++) {
 
 
 
-var buttonConnexion = document.getElementById("buttonConnexion"); 
-var buttonRegister = document.getElementById("buttonRegister"); 
+const buttonConnexion = document.getElementById("buttonConnexion"); 
+const buttonRegister = document.getElementById("buttonRegister"); 
 
 
 buttonConnexion.addEventListener("click", function(e){
-    for (let i=0; i<2; i++){ // i<2 ou i.lenght
-        var x = connexionForm[i].value;
+    for (let i=0; i<2; i++){ 
+        const x = connexionForm[i].value;
         console.log(x);
     } 
+
+       // let div; 
+    // if (localStorage.getItem('username')=== null){
+    //     div = []; }
+    // else {
+    //     div = localStorage.getItem ('username'); 
+    // }  
 })
 
 buttonRegister.addEventListener("click", function(e){
-    var username = registerForm[0].value; 
+    const username = registerForm[0].value; 
     console.log(username);
 
     if (username.length<5){
-        alert("Username incorrect !"); 
-        return false;
+        alert("Username incorrect !");  
     }
 
-    var email = registerForm[1].value; 
+    const email = registerForm[1].value; 
     console.log(email);
 
-    var password = registerForm[2].value; 
+    const password = registerForm[2].value; 
     if (password.length<8){
         alert("Password incorrect !"); 
-        return false; 
     }
     console.log(password);
 
-    var rulesPwd = /^(?=.[a-z])(?=.[A-Z])(?=.*[0-9])/; 
+    const rulesPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/;
     if (rulesPwd.test(password) == false){
         alert("Your password have to contain at least 8 letters, 1 uppercase and 1 lower case and 1 number")
-        return false; 
     }
 
-    var verifPassword = registerForm[3].value; 
+    const verifPassword = registerForm[3].value; 
     if  (verifPassword != password) {
         alert("The verification is incorrect")
-        return false; 
-
     }
 
-})
+    let pers = new User(username, email, password);
+    localStorage.setItem("user" ,JSON.stringify(pers));  
+
+    })
 
 
     // --------------------- STEP 3 -------------------------
@@ -93,6 +113,7 @@ buttonRegister.addEventListener("click", function(e){
             // 2. Modifier ensuite le code ci dessus pour qu'a l'instantation d'un nouvelle 'User' ---
             // --> on utilise les données saisie du formulaire d'inscription pour setup les propriétés notre nouvelle 'User'
             // puis on stocke ce nouvelle objet utilisateurs dans le 'localStorage' sous la clé 'user'
+
 
 
 
