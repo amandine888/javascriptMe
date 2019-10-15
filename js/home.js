@@ -1,6 +1,45 @@
 window.onload = function() {
-    readFile('data/articles.json', function(articles) {
+    readFile('https://raw.githubusercontent.com/promo3Saint-Maur/files/master/articles.json', function(articles) {
         console.log(articles);
+
+    class articles {
+        constructor (title, content, resumes, author, publishedDate, img, tags){
+            this.title = title; 
+            this.content = content; 
+            this.resumes = resumes; 
+            this.author = author; 
+            this.publishedDate = publishedDate; 
+            this.img = img; 
+            this.tags = tags; 
+        }
+
+
+            getTitle (){ return this.title }
+            getContent(){ return this.content }
+            getResumes(){ return this.resumes}
+            getAuthor (){ return this.author}
+            getPublishedDate () { return this.publishedDate}
+            getImg (){ return this.img}
+            getTags (){ return this.tags} 
+    }   
+    
+    
+    this.setTitle = function(newTitle) {this.title = newTitle;}
+    this.setContent = function(newContent) {this.content = newContent;}
+    this.setResumes = function(newResumes) {this.resumes = newResumes;}
+    this.setAuthor = function(newAuthor) {this.author = newAuthor;}
+    this.setPublishedDate = function(newPublishedDate) {this.publishedDate = newPublishedDate;}
+    this.setImg = function(newImg) {this.img = newImg;}
+    this.setTags = function(newTags) {this.tags = newTags;}
+ 
+
+    // var articles = new Article (articles.title, articles.content, articles.resumes, articles.author, articles.publishedDate, articles.img, articles.tags); 
+    // console.log(Article);
+
+    // var fromJson = localStorage.getItem("articles");
+    // var obj = JSON.parse (fromJson);
+
+
 
         // --------------------- STEP 0 (informations) ---------------------
             // Dans le dossier data ce trouve un fichier 'JSON' qui contient une liste d'article

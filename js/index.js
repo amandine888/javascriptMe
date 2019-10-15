@@ -50,50 +50,65 @@ for (let i = 0; i<button.length; i++) {
 const buttonConnexion = document.getElementById("buttonConnexion"); 
 const buttonRegister = document.getElementById("buttonRegister"); 
 
+// Bouton Connexion
 
 buttonConnexion.addEventListener("click", function(e){
-    for (let i=0; i<2; i++){ 
-        const x = connexionForm[i].value;
-        console.log(x);
-    } 
+    const form = document.getElementById ("connexionForm"); 
+        let email = connexionForm[0].value; 
+        let password = connexionForm[1].value;
 
-       // let div; 
-    // if (localStorage.getItem('username')=== null){
-    //     div = []; }
-    // else {
-    //     div = localStorage.getItem ('username'); 
-    // }  
-})
+   
+    let pers = localStorage.getItem("pers"); 
+    obj = JSON.parse(pers); 
+
+    if (pers.email == email && pers.password == password); 
+    window.location = "home.html"; })
+
+    if("pers" != localStorage) { 
+        alert('Account do not exist, please register');} 
+    else {
+        error = false; 
+    }
+    
+    let fromPers = localStorage.getItem("username")
+    let div; 
+    if (localStorage.getItem("username")=== null){
+        div = []; }
+    else {
+        div = localStorage.getItem ("username"); 
+    }
+
+    // Bouton register
 
 buttonRegister.addEventListener("click", function(e){
-    const username = registerForm[0].value; 
+    let username = registerForm[0].value; 
     console.log(username);
 
     if (username.length<5){
         alert("Username incorrect !");  
     }
 
-    const email = registerForm[1].value; 
+    let email = registerForm[1].value; 
     console.log(email);
 
-    const password = registerForm[2].value; 
+    let password = registerForm[2].value; 
     if (password.length<8){
         alert("Password incorrect !"); 
     }
     console.log(password);
 
-    const rulesPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/;
+    let rulesPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])/;
     if (rulesPwd.test(password) == false){
         alert("Your password have to contain at least 8 letters, 1 uppercase and 1 lower case and 1 number")
     }
 
-    const verifPassword = registerForm[3].value; 
+    let verifPassword = registerForm[3].value; 
     if  (verifPassword != password) {
         alert("The verification is incorrect")
     }
 
     let pers = new User(username, email, password);
-    localStorage.setItem("user" ,JSON.stringify(pers));  
+    localStorage.setItem("pers" ,JSON.stringify(pers));  
 
     })
 
@@ -113,8 +128,6 @@ buttonRegister.addEventListener("click", function(e){
             // 2. Modifier ensuite le code ci dessus pour qu'a l'instantation d'un nouvelle 'User' ---
             // --> on utilise les données saisie du formulaire d'inscription pour setup les propriétés notre nouvelle 'User'
             // puis on stocke ce nouvelle objet utilisateurs dans le 'localStorage' sous la clé 'user'
-
-
 
 
 
