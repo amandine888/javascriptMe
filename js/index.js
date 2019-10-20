@@ -61,11 +61,27 @@ buttonConnexion.addEventListener("click", function(e){
     let pers = localStorage.getItem("pers"); 
     obj = JSON.parse(pers); 
 
-    if (pers.email == email && pers.password == password); 
-    window.location = "home.html"; })
+    // if (pers) {
+    if (pers.email == email && pers.password == password)
+    window.location = "home.html"; 
+        
+        // à revoir  : 
+    //     else { let para = document.createElement("p"); 
+    //     para.innerHTML = "wrong username or password"; 
+
+    //     let connexionDiv = document.getElementsByTagName ("form-block") [1]; 
+    //     connexionDiv.appendChild(para); 
+    //     }}
+
+    // else {
+    //     let para = document.createElement ("p"); 
+    //     para.innerHTML = "Account does not exist, please register. "; 
+    //     let connexionDiv = document.getElementsByTagName ("form-block") [1]; 
+    //     connexionDiv.appendChild(para); 
+    //     }
 
     if("pers" != localStorage) { 
-        alert('Account do not exist, please register');} 
+        alert('Account does not exist, please register');} 
     else {
         error = false; 
     }
@@ -143,4 +159,4 @@ buttonRegister.addEventListener("click", function(e){
 
             // 2. Si les données saisies correspondent a celles présentes dans le 'localStorage', rediriger l'utilisateur sur la page 'home.html'
 
-}
+})}

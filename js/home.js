@@ -1,9 +1,13 @@
 window.onload = function() {
     readFile('https://raw.githubusercontent.com/promo3Saint-Maur/files/master/articles.json', function(articles) {
-        console.log(articles);
+    console.log(articles);
 
-    class articles {
-        constructor (title, content, resumes, author, publishedDate, img, tags){
+    // Ma classe : 
+
+    class Articles {
+
+        constructor (id, title, content, resumes, author, publishedDate, img, tags) {
+            this.id = id; 
             this.title = title; 
             this.content = content; 
             this.resumes = resumes; 
@@ -12,34 +16,88 @@ window.onload = function() {
             this.img = img; 
             this.tags = tags; 
         }
-
-
-            getTitle (){ return this.title }
-            getContent(){ return this.content }
+            getId (){ return this.id}
+            getTitle (){ return this.title}
+            getContent(){ return this.content}
             getResumes(){ return this.resumes}
             getAuthor (){ return this.author}
-            getPublishedDate () { return this.publishedDate}
+            getPublishedDate (){ return this.publishedDate}
             getImg (){ return this.img}
             getTags (){ return this.tags} 
+
+            setId (){ return this.id}
+            setTitle (){ return this.title}
+            setContent(){ return this.content}
+            setResumes(){ return this.resumes}
+            setAuthor (){ return this.author}
+            setPublishedDate (){ return this.publishedDate}
+            setImg (){ return this.img}
+            setTags (){ return this.tags} 
     }   
+
+    const section = document.getElementsByTagName("section")[0];
+
+    // Ma boucle : 
+    for (let i = 0; i<articles.length; i++){
+
+    // Déclarer une instance : 
+    let newArticle = new Articles (articles[i].id, articles[i].title, articles[i].content, articles[i].resumes, articles[i].author, articles[i].publishedDate, articles[i].img, articles[i].tags); 
     
+    // Créer dans mon html les différents éléments : 
+    let sectionArticle = document.createElement ("article"); 
+    sectionArticle.classList.add ("articlePreview");
+    sectionArticle.setAttribute("data-id", newArticle.getId())
+    section.appendChild(sectionArticle); 
+
+    let articleTitle = document.createElement ("h2"); 
+    articleTitle.innerText = newArticle.getTitle();
+    sectionArticle.append(articleTitle);
+
+    let bodyDiv = document.createElement ("div"); 
+    bodyDiv.classList.add ("article-body"); 
+    sectionArticle.append(bodyDiv);
+
+    let imgDiv = document.createElement ("div"); 
+    imgDiv.classList.add("article-img"); 
+    bodyDiv.append(imgDiv);
+
+    let img = document.createElement ("img"); 
+    img.setAttribute ("src", newArticle.getImg()); 
+    imgDiv.append(img);
+
+    let contentDiv = document.createElement ("div"); 
+    contentDiv.classList.add ("article-content"); 
+    sectionArticle.append(contentDiv);
+
+    let paraContent = document.createElement ("p"); 
+    paraContent.innerText = newArticle.getContent(); 
+    contentDiv.append(paraContent); 
+
+    let paraResume = document.createElement ("p"); 
+    paraResume.innerText = newArticle.getResumes(); 
+    contentDiv.append(paraResume);
+
+    let author = document.createElement ("h3"); 
+    author.innerText = newArticle.getAuthor(); 
+    contentDiv.append(author);
+
+    let date = document.createElement ("date"); 
+    date.innerText = newArticle.getPublishedDate(); 
+    contentDiv.append(date);
+
+    let tagDiv = document.createElement ("div"); 
+    tagDiv.classList.add ("article-tags"); 
+    sectionArticle.append(tagDiv);
+
+    let tags = document.createElement("p"); 
+    tags.innerText = newArticle.getTags(); 
+    tagDiv.append(tags); 
     
-    this.setTitle = function(newTitle) {this.title = newTitle;}
-    this.setContent = function(newContent) {this.content = newContent;}
-    this.setResumes = function(newResumes) {this.resumes = newResumes;}
-    this.setAuthor = function(newAuthor) {this.author = newAuthor;}
-    this.setPublishedDate = function(newPublishedDate) {this.publishedDate = newPublishedDate;}
-    this.setImg = function(newImg) {this.img = newImg;}
-    this.setTags = function(newTags) {this.tags = newTags;}
- 
-
-    // var articles = new Article (articles.title, articles.content, articles.resumes, articles.author, articles.publishedDate, articles.img, articles.tags); 
-    // console.log(Article);
-
-    // var fromJson = localStorage.getItem("articles");
-    // var obj = JSON.parse (fromJson);
-
-
+    // URL redirection : (à terminer)
+    sectionArticle.onclick = function() {
+        window.location.href = "file:///Applications/MAMP/htdocs/JavascriptMe/article.html";
+    }
+     }
 
         // --------------------- STEP 0 (informations) ---------------------
             // Dans le dossier data ce trouve un fichier 'JSON' qui contient une liste d'article
